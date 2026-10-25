@@ -6,7 +6,8 @@
 # icon 是服务自己站点上的路径，取不到时显示首字母）
 # 账号密码：存在 Nomad Variable nomad/jobs/nav 里，值格式 账号:密码，$cfg 里用 cred 指定键名。
 # 部署前必须先写入该变量，否则 template 会一直等待：
-#   nomad var put nomad/jobs/nav v2raya_admin=admin:密码 cupsd_admin=print:print
+#   nomad var put -force nomad/jobs/nav v2raya_admin=admin:密码 cupsd_admin=print:print
+#   （-force 是整体替换，已有的键要一起写上；详见 AGENTS.md）
 #   nomad var get nomad/jobs/nav
 
 job "nav" {
@@ -143,10 +144,23 @@ job "nav" {
   </div>
 </main>
 <script>
+  // 非 https/localhost 页面没有 navigator.clipboard，回退到 execCommand
+  function copyText(t) {
+    if (navigator.clipboard) return navigator.clipboard.writeText(t);
+    const a = document.createElement("textarea");
+    a.value = t;
+    a.style.position = "fixed";
+    a.style.opacity = "0";
+    document.body.appendChild(a);
+    a.select();
+    document.execCommand("copy");
+    a.remove();
+    return Promise.resolve();
+  }
   document.addEventListener("click", async (e) => {
     const b = e.target.closest("button[data-copy]");
     if (!b) return;
-    await navigator.clipboard.writeText(b.dataset.copy);
+    await copyText(b.dataset.copy);
     b.classList.add("ok");
     setTimeout(() => b.classList.remove("ok"), 1000);
   });
