@@ -21,6 +21,7 @@ nomad_jobs/
     ├── clickhouse.hcl       # ClickHouse 数据库（HTTP 8123 / Native 9000）
     ├── clickhouse.config.xml # ClickHouse 自定义配置文件
     ├── gitea.hcl            # Gitea 代码托管（HTTP 3000 / SSH 2222）
+    ├── nav.hcl              # 导航页，自动列出 Nomad 服务（HTTP 8090，Traefik 根路径 /）
     ├── oplist.hcl           # OpenList 文件列表服务（HTTP 5244）
     ├── syncthing.hcl        # Syncthing 文件同步（HTTP 8384）
     └── traefik.hcl          # Traefik 反向代理（host 网络模式）
