@@ -37,6 +37,7 @@ job "v2raya" {
 
       config {
         image = "docker.io/mzz2017/v2raya:latest"
+        force_pull = true
         network_mode = "host"
         
         volumes = [
@@ -45,7 +46,6 @@ job "v2raya" {
       }
 
       env {
-        V2RAYA_V2RAY_BIN = "/usr/local/bin/xray"
         V2RAYA_LOG_FILE  = "/tmp/v2raya.log"
       }
 
