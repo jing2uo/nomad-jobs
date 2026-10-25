@@ -12,7 +12,9 @@
 ```
 nomad_jobs/
 ├── experbook/
-│   ├── clickhouse.hcl  # ClickHouse 数据库（HTTP 8123）
+│   ├── agentsview.hcl  # AgentsView 会话浏览（HTTP 127.0.0.1:8080）
+│   ├── cupsd.hcl       # CUPS 打印服务（HTTP 127.0.0.1:631 + /run/cups/cups.sock）
+│   ├── nav.hcl         # 导航页，自动列出 Nomad 服务（HTTP 127.0.0.1:80）
 │   └── v2raya.hcl      # v2rayA 代理面板（HTTP 2017）
 │
 └── minilab/
