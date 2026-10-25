@@ -27,6 +27,8 @@ job "traefik" {
           "--entrypoints.web.address=:80",
           "--providers.nomad=true",
           "--providers.nomad.endpoint.address=http://127.0.0.1:4646",
+          # 只暴露显式带 traefik.enable=true 的服务
+          "--providers.nomad.exposedByDefault=false",
         ]
       }
 
