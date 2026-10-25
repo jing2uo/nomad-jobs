@@ -7,6 +7,8 @@
 - **调度器**：HashiCorp Nomad（任务类型均为 `service`，datacenter `dc1`）
 - **容器运行时**：Podman（Nomad task driver 使用 `podman`）
 
+给 agent 的操作指南（新增 / 修改 / 删除应用、编写 hcl 的约定）见 [AGENTS.md](AGENTS.md)。
+
 ## 目录结构
 
 ```
